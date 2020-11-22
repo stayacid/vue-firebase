@@ -1,15 +1,23 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+// types
+import Vuex, { StoreOptions } from "vuex";
+import { IAuthState } from "./auth/types"
+import { IComicsState } from "./comics/types"
+// data
+import { Auth } from "./auth"
+import { Comicses } from "./comics"
+Vue.use(Vuex);
 
-Vue.use(Vuex)
+export interface IRootState {
+  Auth: IAuthState;
+  Comicses: IComicsState;
+}
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+const store: StoreOptions<IRootState> = {
   modules: {
+    Auth,
+    Comicses
   }
-})
+}
+
+export default new Vuex.Store<IRootState>(store);
